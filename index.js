@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 app.use(express.urlencoded({extended: true}));
 const mongoose = require('mongoose');
 const session = require('express-session');
+const env = process.env;
 
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'));
@@ -16,7 +18,7 @@ app.use(session({
 }));
 
 //mongoDBとの接続
-mongoose.connect("mongodb+srv://mongo_sample:NW1vX3uTcMPHdvCK@mongosample.r8beumi.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect(env.MONGO_DB_URI)
 .then(() => {
   console.log('Success: Connected to MongoDB');
 })
@@ -152,9 +154,15 @@ app.post("/user/create", (req, res) => {
   });
 });
 
+//404エラー対応
+app.get("*", (req, res) => {
+  res.render("error", { message: "ページが存在しません"});
+});
+
 //ポートの設定
 const port = process.env.PORT || 5001;
 
 app.listen(5001, () => {
   console.log(`Listening on ${port}` );
+  console.log(env.MONGO_DB_URI);
 });
