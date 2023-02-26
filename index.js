@@ -152,6 +152,7 @@ app.post("/user/create", (req, res) => {
   });
 });
 
+//ポートの設定
 const port = process.env.PORT || 5001;
 
 app.listen(5001, () => {
