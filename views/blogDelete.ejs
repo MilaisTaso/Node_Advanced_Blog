@@ -1,0 +1,15 @@
+<title>消去ページ</title>
+<%- include("./head"); %>
+<body>
+  <%- include("./header"); %>
+  <div class="blog-delete">
+    <form action="/blog/delete/<%= singleBlog._id%>" method="post">
+      <h1><%= singleBlog.title%></h1>
+      <img src="/public/images/<%= singleBlog.image %>" alt="blog-image">
+      <p><%= singleBlog.textBody %></p>
+      <button type="submit">削除する</button>
+    </form>
+  </div>
+  <%- include("./footer"); %>
+</body>
+</html>

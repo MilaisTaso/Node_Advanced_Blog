@@ -1,0 +1,26 @@
+<%- include("./head"); %>
+<title>ブログ作成ページ</title>
+</head>
+<body>
+  <%- include("./header"); %>
+  <main>
+    <div>
+      <h1>記事を書く</h1>
+      <div class="blog-create">
+        <form action="/blog/create" method="post">
+          <label for="title">タイトル</label>
+          <input type="text" name="title" required>
+          <label for="summary">要約</label>
+          <input type="text" name="summary"" required>
+          <label for="image">イメージ</label>
+          <input type="text" name="image" placeholder="/img1.jpg" required>
+          <label for="textBody">本文</label>
+          <textarea name="textBody" cols="30" rows="15"></textarea><br />
+          <button type="submit">投稿</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <%- include("./footer"); %>
+</body>
+</html>
